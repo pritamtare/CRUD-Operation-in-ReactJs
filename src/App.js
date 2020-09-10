@@ -1,26 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter, Link ,Route,Switch } from 'react-router-dom';
+import Home from "./Components/Home";
+import About from './Components/About';
+import Contact from './Components/Contact';
+import Navbar from './layout/Header';
+import NotFount  from './Components/NotFount';
+import AddUser from './Components/Users/AddUser';
+import EditUser from './Components/Users/EditUser';
+import ViewUser from './Components/Users/ViewUser';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// import navbar from './layout/navbar'
+
+export default function App() {
+    return (
+        <>
+        <BrowserRouter>
+        <Navbar/>
+        {/* <NotFount/> */}
+        <Switch>
+            <Route path="/" exact component={Home}/>
+             < Route path="/about" exact component={About}/>
+            <Route path="/contact" exact component={Contact}/>
+            
+            <Route exact path="/Users/adduser" component={AddUser}/>
+            <Route exact path="/Users/edituser/:id" component={EditUser}/>
+            <Route exact path="/Users/viewuser/:id" component={ViewUser}/>
+
+            <Route component={NotFount}/>
+            </Switch>
+            </BrowserRouter>
+        </>
+    )
 }
-
-export default App;
